@@ -2,70 +2,25 @@ package vn.hoangphat.services;
 
 import java.util.List;
 
-import vn.hoangphat.dao.CategoryDao;
-import vn.hoangphat.dao.ICategoryDao;
 import vn.hoangphat.entity.Category;
 
 public interface ICategoryService {
-	public ICategoryDao cateDao = new CategoryDao();
 
-	@Override
-	public List<Category> findAll() {
-		return cateDao.findAll();
-	}
+	int count();
 
-	@Override
-	public Category findById(int id) {
-		return cateDao.findById(id);
-	}
+	List<Category> findAll(int page, int pagesize);
 
-	@Override
-	public List<Category> searchByName(String keyword) {
-		return cateDao.searchByName(keyword);
-	}
+	Category findByCategoryname(String catname);
 
-	@Override
-	public void insert(Category category) {
-		Category cate = this.findByCategoryname(category.getCategoryname());
-		if(cate==null) {
-			cateDao.insert(category);
-		}
-	}
+	List<Category> findAll();
 
-	@Override
-	public void update(Category category) {
-		Category cate = this.findById(category.getCategoryid());
-		if(cate!=null) {
-			cateDao.update(category);
-		}
-	}
+	Category findById(int cateid);
 
-	@Override
-	public void delete(int id){
-		try {
-			cateDao.delete(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	void delete(int cateid) throws Exception;
 
-	@Override
-	public int count() {
-		return cateDao.count();
-	}
+	void update(Category category);
 
-	@Override
-	public List<Category> findAll(int page, int pagesize) {
-		return cateDao.findAll(page, pagesize);
-	}
-
-	@Override
-	public Category findByCategoryname(String name) {
-		try {
-			return cateDao.findByCategoryname(name);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	void insert(Category category);
+	
+	List<Category> searchByName(String catname);
 }

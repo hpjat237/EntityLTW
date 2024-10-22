@@ -1,17 +1,18 @@
-package vn.hoangphat.dao;
+package vn.hoangphat.dao.impl;
 
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import vn.hoangphat.configs.JPAConfigs;
+import vn.hoangphat.configs.JPAConfig;
+import vn.hoangphat.dao.ICategoryDao;
 import vn.hoangphat.entity.Category;
 
 public class CategoryDao implements ICategoryDao {
 	// viết phương thức trước khai báo hàm sau
 	@Override
 	public void insert(Category category) {
-		EntityManager enma = JPAConfigs.getEntityManager();
+		EntityManager enma = JPAConfig.getEntityManager();
 		EntityTransaction trans = enma.getTransaction();
 		try {
 			trans.begin();
